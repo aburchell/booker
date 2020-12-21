@@ -17,10 +17,11 @@
 	}
 
 	h1 {
-		font-size: 2.8em;
+		font-size: 2em;
 		text-transform: uppercase;
 		font-weight: 700;
 		margin: 0 0 0.5em 0;
+		text-align: left;
 	}
 
 	figure {
@@ -51,4 +52,3 @@
 <h1>What've you been reading?</h1>
 
 <BookTile {book}/>
-<p><strong>Try editing this file (src/routes/index.svelte) to test live reloading.</strong></p>

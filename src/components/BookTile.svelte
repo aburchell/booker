@@ -10,15 +10,16 @@
 
 <style type="text/css" media="screen">
  .book-tile-flex {
-     /* width: 100%;
-        height: 100%; */
      display: grid;
      grid-template-columns: 1fr 3fr  1fr;
      grid-template-rows: 2fr, 1fr;
 
      grid-template-areas:
          " id  blurb  rating "
-         " id  progress  rating "
+         " id  progress  rating ";
+
+     padding-bottom: 1em;
+     border-bottom: 2px solid GoldenRod;
  }
 
 .booktitle {
@@ -47,12 +48,16 @@
      grid-area: progress;
      display: flex;
      padding: 0.5em;
+
  }
 
  .total-bar {
      background-color: LightGrey;
      width: 100%;
+     /* height: 55%; */
+
      text-align: center;
+     border-radius: 1em;
  }
 
  .completed-bar {
@@ -61,7 +66,7 @@
      background-color: GoldenRod;
      overflow: hidden;
      max-width: 100%;
-     /* width: {progressPercentStr}; */
+     border-radius: 30px;
  }
 
  .pages-box {
