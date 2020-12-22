@@ -7,15 +7,11 @@
 <style>
 	main {
 		position: relative;
-
-		min-height: 90vh;
-
-		/* min-width: 75vw; */
-		max-width: max(56em, 85vw);
-		/* width: 75vw; */
-		/* background-color: grey; */
+		max-width: 56em;
+		height: 100vh;
+		background-color: grey;
 		padding: 2em;
-		margin: 5vh auto 5vh 5vw;
+		margin: 2em 2em auto 2em;
 		box-sizing: border-box;
 	}
 </style>

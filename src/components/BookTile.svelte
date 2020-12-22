@@ -1,17 +1,22 @@
 <script type="text/javascript">
-  export let book;
+    export let book;
+    let pagesRead = book.pagesRead;
+    $: progressPercent = Math.floor(pagesRead / book.totalPages * 100);
+    $: progressPercentStr = progressPercent + '%';
+    $: console.log(progressPercentStr);
 
-  let pagesRead = book.pagesRead;
-  $: progressPercent = Math.floor(pagesRead / book.totalPages * 100);
-  $: progressPercentStr = progressPercent + '%';
-  $: console.log(progressPercentStr);
+    // https://stackoverflow.com/questions/6850164/get-the-device-width-in-javascript
+    // import { onMount } from 'svelte';
+    // onMount(() => {
+    //     let width = (window.innerWidth > 0) ? window.innerWidth : screen.width
+    // })
 </script>
 
 
 <style type="text/css" media="screen">
  .book-tile-flex {
      display: grid;
-     grid-template-columns: 1fr 3fr  1fr;
+     grid-template-columns: 2fr 3fr  1fr;
      grid-template-rows: 2fr, 1fr;
 
      grid-template-areas:
@@ -20,6 +25,8 @@
 
      padding-bottom: 1em;
      border-bottom: 2px solid GoldenRod;
+
+     max-height: 35%;
  }
 
 .booktitle {
@@ -28,10 +35,11 @@
     background-color: DarkSeaGreen;
     padding: 1em;
     border-radius: 0 2em 0 0;
+    overflow: hidden;
  }
 
 .booktitle > h2 {
-    font-size: 3em;
+    font-size: 2em;
  }
 
 .booktitle > h3 {
@@ -71,6 +79,49 @@
 
  .pages-box {
      margin-left: 3%;
+}
+
+@media only screen and (max-width: 800px) {
+    .book-tile-flex {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr, 2fr, 1fr;
+
+        grid-template-areas:
+            " id  "
+            " blurb "
+            " rating ";
+
+        padding-bottom: 0.5em;
+        border-bottom: 2px solid GoldenRod;
+    }
+
+    .booktitle {
+        grid-area: id;
+        color: DimGrey;
+        background-color: DarkSeaGreen;
+        padding: 1em;
+        border-radius: 0 2em 0 0;
+        overflow: hidden;
+    }
+
+    .booktitle > h2 {
+        font-size: 2em;
+    }
+
+    .booktitle > h3 {
+        font-size: 1em;
+    }
+
+    .booksummary {
+        grid-area: blurb;
+        padding: 1em;
+        text-align: center;
+    }
+
+    .progressbar .total-bar .completed-bar .pages-box {
+        display: none;
+    }
  }
 </style>
 
