@@ -120,6 +120,12 @@
     .progressbar .total-bar .completed-bar .pages-box {
         display: none;
     }
+    p {
+        padding: 0;
+        margin: 0;
+        max-height: 100%;
+        max-width: 100%;
+    }
  }
 </style>
 
@@ -134,6 +140,11 @@
     </div>
     <div class="progressbar">
         <div class="total-bar"> <div class="completed-bar" style="width: {progressPercentStr}"> </div> </div>
-        <input class="pages-box" type=number bind:value={$bookShelf[bookID].pagesRead} min=0 max={book.totalPages} />
+        {#if bookFinished}
+            <div>&#9989;</div>
+        {:else}
+            <input class="pages-box" type=number bind:value={$bookShelf[bookID].pagesRead}
+                          min=0 max={book.totalPages} />
+        {/if}
     </div>
 </div>
