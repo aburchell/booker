@@ -1,15 +1,13 @@
 <script type="text/javascript">
+    import { bookShelf } from '../stores.js'
     export let book;
-    let pagesRead = book.pagesRead;
-    $: progressPercent = Math.floor(pagesRead / book.totalPages * 100);
-    $: progressPercentStr = progressPercent + '%';
-    $: console.log(progressPercentStr);
+    export let bookID;
 
-    // https://stackoverflow.com/questions/6850164/get-the-device-width-in-javascript
-    // import { onMount } from 'svelte';
-    // onMount(() => {
-    //     let width = (window.innerWidth > 0) ? window.innerWidth : screen.width
-    // })
+    $: pagesRead = $bookShelf[bookID][pagesRead]
+    $: progressPercent = Math.floor(book.pagesRead / book.totalPages * 100);
+    $: progressPercentStr = progressPercent + '%';
+    $: bookFinished = book.pagesRead >= book.totalPages
+    $: console.log(bookFinished)
 </script>
 
 
@@ -23,7 +21,8 @@
          " id  blurb  rating "
          " id  progress  rating ";
 
-     padding-bottom: 1em;
+     padding-bottom: 0;
+     margin-bottom: 1em;
      border-bottom: 2px solid GoldenRod;
 
      max-height: 35%;
@@ -92,8 +91,6 @@
             " blurb "
             " rating ";
 
-        padding-bottom: 0.5em;
-        border-bottom: 2px solid GoldenRod;
     }
 
     .booktitle {
@@ -136,6 +133,6 @@
     </div>
     <div class="progressbar">
         <div class="total-bar"> <div class="completed-bar" style="width: {progressPercentStr}"> </div> </div>
-        <input class="pages-box" type=number bind:value={pagesRead} min=0 max={book.totalPages} />
+        <input class="pages-box" type=number bind:value={$bookShelf[bookID].pagesRead} min=0 max={book.totalPages} />
     </div>
 </div>

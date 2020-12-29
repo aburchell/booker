@@ -1,13 +1,7 @@
 <script>
-	import successkid from 'images/successkid.jpg';
-	import BookTile from '../components/BookTile.svelte';
- export let book = {
-	 title: "Foundation",
-	 author: "Isaac Asimov",
-	 summary: "The galactic empire is crumbling. Will 'scientific' models of the future help humanity rebuild?",
-	 pagesRead: 35,
-	 totalPages: 285,
- };
+	import { bookShelf } from '../stores.js'
+ // import BookTile from '../components/BookTile.svelte';
+	import BookTray from '../components/BookTray.svelte';
 </script>
 
 <style>
@@ -51,4 +45,4 @@
 
 <h1>What've you been reading?</h1>
 
-<BookTile {book}/>
+<BookTray {$bookShelf}/>
