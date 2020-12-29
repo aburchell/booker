@@ -25,7 +25,8 @@
      margin-bottom: 1em;
      border-bottom: 2px solid GoldenRod;
 
-     max-height: 35%;
+     /* This seems suspect... */
+     height: 35%;
  }
 
 .booktitle {
