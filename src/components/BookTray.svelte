@@ -1,6 +1,19 @@
 <script type="text/javascript">
     import BookTile from './BookTile.svelte';
     import {bookShelf} from '../stores.js'
+
+    const server = 'undefined' === typeof window ? 'http://localhost:3000' : 'https://yearoftheword.xyz';
+    const fetch = require("node-fetch");
+    function getBooks() {
+        return fetch('/src/functions/fetch-book.js')
+        .then(response => {return response.json()})
+    }
+
+    const gotBooks = getBooks().then((response) => {
+        console.log('API response', response)
+    }).catch((error) => {
+        console.log('API error', error)
+    })
 </script>
 
 <style type="text/css" media="screen">
