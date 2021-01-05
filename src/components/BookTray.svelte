@@ -6,15 +6,13 @@
  // import { fetchBooks } from "../functions/fetch-book.js"
 
     let data;
- // onMount(async () => {
- //     // data = await fetch('/src/functions/fetch-book.js'
- //     data = await fetch('src/functions/fetch-book.js'
- //     ).then(
- //         (x) => x
- //     );
- // });
-    data = fetch('/.netlify/functions/fetch-book.js').then( response => {return response.json()} );
-    console.log("Data from API?: ", data);
+ onMount(async () => {
+     data = await fetch('/.netlify/functions/fetch-book.js'
+     ).then(
+         (x) => x
+     );
+ });
+console.log("Data from API?: ", data);
  // const server = 'undefined' === typeof window ? 'http://localhost:3000' : 'https://yearoftheword.xyz';
  // const fetch = require("node-fetch");
  // function getBooks() {

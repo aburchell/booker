@@ -11,7 +11,8 @@ exports.handler = (event, context, callback) => {
     // This is the place where I write my FQL (?) to get
     //  what I want from Fauna.
     return client.query(
-        q.Map(q.Paginate(q.Documents(q.Collection('books'))),
+        q.Map(q.Paginate(q.Match(q.Index('all-books'))),
+            // q.Documents(q.Collection('books'))),
               q.Lambda('bookRef', q.Get(q.Var('bookRef'))))
     ).then( (response) => {
         console.log("success", response)
