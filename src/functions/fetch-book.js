@@ -4,9 +4,6 @@ import faunadb from 'faunadb'
 const q = faunadb.query
 const client = new faunadb.Client({secret: process.env.FAUNADB_SECRET})
 
-const fetchBooks = async () => {
-}
-
 exports.handler = (event, context, callback) => {
     console.log("Function - Retrieve book", event);
 
@@ -35,4 +32,3 @@ exports.handler = (event, context, callback) => {
   // })
 }
 
-export default fetchBooks;
