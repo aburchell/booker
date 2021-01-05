@@ -1,9 +1,9 @@
-import faunadb from 'faunadb'
+// import faunadb from 'faunadb'
 
 /* configure faunaDB Client with our secret */
 let faunadb = require('faunadb');
-const q = faunadb.faunadb.query
-const client = new faunadb.faunadb.Client({secret: process.env.FAUNADB_SECRET})
+const q = faunadb.query
+const client = new faunadb.Client({secret: process.env.FAUNADB_SECRET})
 
 exports.handler = (event, context, callback) => {
     console.log("Function - Retrieve book", event);
