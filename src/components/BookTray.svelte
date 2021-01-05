@@ -2,18 +2,31 @@
     import BookTile from './BookTile.svelte';
     import {bookShelf} from '../stores.js'
 
-    const server = 'undefined' === typeof window ? 'http://localhost:3000' : 'https://yearoftheword.xyz';
-    const fetch = require("node-fetch");
-    function getBooks() {
-        return fetch('/src/functions/fetch-book.js')
-        .then(response => {return response.json()})
-    }
+    import { onMount } from "svelte";
+ // import { fetchBooks } from "../functions/fetch-book.js"
 
-    const gotBooks = getBooks().then((response) => {
-        console.log('API response', response)
-    }).catch((error) => {
-        console.log('API error', error)
-    })
+    let data;
+ // onMount(async () => {
+ //     // data = await fetch('/src/functions/fetch-book.js'
+ //     data = await fetch('src/functions/fetch-book.js'
+ //     ).then(
+ //         (x) => x
+ //     );
+ // });
+    data = fetch('/.netlify/functions/fetch-book.js').then( response => {return response.json()} );
+    console.log("Data from API?: ", data);
+ // const server = 'undefined' === typeof window ? 'http://localhost:3000' : 'https://yearoftheword.xyz';
+ // const fetch = require("node-fetch");
+ // function getBooks() {
+ //     return fetch('/src/functions/fetch-book.js')
+ //     .then(response => {return response.json()})
+ // }
+ //
+ // const gotBooks = getBooks().then((response) => {
+ //     console.log('API response', response)
+ // }).catch((error) => {
+ //     console.log('API error', error)
+ // })
 </script>
 
 <style type="text/css" media="screen">

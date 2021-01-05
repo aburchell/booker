@@ -45,4 +45,4 @@
 
 <h1>What've you been reading?</h1>
 
-<BookTray {$bookShelf}/>
+<BookTray />
