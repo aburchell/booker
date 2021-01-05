@@ -3,16 +3,12 @@
     import {bookShelf} from '../stores.js'
 
     import { onMount } from "svelte";
- // import { fetchBooks } from "../functions/fetch-book.js"
-
     let data;
- onMount(async () => {
-     data = await fetch('/.netlify/functions/fetch-book.js'
-     ).then(
-         (x) => x
-     );
- });
-console.log("Data from API?: ", data);
+    onMount(async () => {
+        $bookShelf = await fetch('/.netlify/functions/fetch-book'
+        ).then((x) => x.json())
+    });
+
  // const server = 'undefined' === typeof window ? 'http://localhost:3000' : 'https://yearoftheword.xyz';
  // const fetch = require("node-fetch");
  // function getBooks() {
