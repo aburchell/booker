@@ -16,6 +16,7 @@ exports.handler = (event, context, callback) => {
               q.Lambda('bookRef', q.Get(q.Var('bookRef'))))
     ).then( (response) => {
         console.log("success", response)
+        console.log("First book is:", response.data[0])
         return callback(null, {
             statusCode: 200,
             body: JSON.stringify(response)})}
