@@ -1,14 +1,14 @@
 <script type="text/javascript">
     import { bookShelf } from '../stores.js'
- // export let book;
+    export let book;
     export let i;
 
-    $: book = $bookShelf[i]["data"];
-    $: pagesRead = $bookShelf[i]["data"][pagesRead];
+ // $: book = $bookShelf[i]["data"];
+    $: pagesRead = book[pagesRead];
     $: progressPercent = Math.floor(
-        $bookShelf[i]["data"][pagesRead] / $bookShelf[i]["data"][totalPages] * 100);
+        book[pagesRead] / book[totalPages] * 100);
     $: progressPercentStr = progressPercent + '%';
-    $: bookFinished = $bookShelf[i]["data"][pagesRead] >= $bookShelf[i]["data"][totalPages];
+    $: bookFinished = book[pagesRead] >= book[totalPages];
     $: console.log(bookFinished);
 </script>
 
@@ -161,8 +161,8 @@
     {#if bookFinished}
         <div>&#9989;</div>
     {:else}
-        <input class="pages-box" type=number bind:value={$bookShelf[i]["data"][pagesRead]}
-                    min=0 max={$bookShelf[i]["data"][totalPages]} />
+        <input class="pages-box" type=number bind:value={book[pagesRead]}
+                    min=0 max={book[totalPages]} />
     {/if}
     </div>
 </div>
