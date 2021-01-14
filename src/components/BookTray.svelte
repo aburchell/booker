@@ -7,22 +7,9 @@
         const res = await fetch('/.netlify/functions/fetch-book');
         const data = await res.json();
         console.log(data)
+        $bookShelf = data['data'];
+        console.log($bookShelf)
     })
-
-    console.log($bookShelf)
-
- // const server = 'undefined' === typeof window ? 'http://localhost:3000' : 'https://yearoftheword.xyz';
- // const fetch = require("node-fetch");
- // function getBooks() {
- //     return fetch('/src/functions/fetch-book.js')
- //     .then(response => {return response.json()})
- // }
- //
- // const gotBooks = getBooks().then((response) => {
- //     console.log('API response', response)
- // }).catch((error) => {
- //     console.log('API error', error)
- // })
 </script>
 
 <style type="text/css" media="screen">
@@ -37,7 +24,7 @@
             <!-- FUTURE
                  Passing in book here is unnecessary in theory, as I just access $bookShelf from within
                  this BookTile element. Streamline. -->
-            <BookTile {book} bookID={i}/>
+            <BookTile {i}/>
         </ul>
     {/each}
 </ul>
