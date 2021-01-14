@@ -9,8 +9,6 @@
     bookShelf.set(data.data);
     isFetching.set(false);
 }
-
- }
 </script>
 
 <style>
