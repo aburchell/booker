@@ -24,7 +24,7 @@
             <!-- FUTURE
                  Passing in book here is unnecessary in theory, as I just access $bookShelf from within
                  this BookTile element. Streamline. -->
-            <BookTile {book} {i}/>
+            <BookTile book={book['data']} {i}/>
         </ul>
     {/each}
 </ul>
