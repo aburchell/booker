@@ -1,16 +1,17 @@
 import { writable } from 'svelte/store';
-import { onMount } from 'svelte';
+
+export const isFetching = writable(true);
+export const bookShelf = writable([]);
+
+// export const fetchBooks = async () => {
+//     const res = await fetch('/.netlify/functions/fetch-book');
+//     const data = await res.json();
+//     bookShelf.set(data.data);
+//     isFetching.set(false);
+// }
 
 
-export let isFetching = writable(true);
-export let bookShelf = writable();
 
-export const fetchBooks = async () => {
-    const res = await fetch('/.netlify/functions/fetch-book');
-    const data = await res.json();
-    bookShelf.set(data.data);
-    isFetching.set(false);
-}
 // onMount(async () => {
 //     const res = await fetch('/.netlify/functions/fetch-book');
 //     const data = await res.json();
@@ -35,7 +36,6 @@ export const fetchBooks = async () => {
 // 		totalPages: 252,
 // 	 },
 // ]);
-//     return {
 //         subscribe,
 //         addBook: (book) => update(books => books.push(arr)),
 //         mergeShelves: (shelf) => update(books => books.concat(shelf))

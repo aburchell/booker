@@ -1,9 +1,9 @@
 <script type="text/javascript">
  import BookTile from './BookTile.svelte';
- import { fetchBooks, bookShelf, isFetching } from '../stores.js'
+ import { bookShelf, isFetching } from '../stores.js'
  import { onMount } from 'svelte';
 
- onMount(() => fetchBooks())
+ // onMount(() => fetchBooks())
 </script>
 
 <style type="text/css" media="screen">
