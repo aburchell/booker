@@ -13,29 +13,34 @@
 
 <style type="text/css" media="screen">
  .book-tile-flex {
+     /* background-color: grey; */
+
      display: grid;
      grid-template-columns: 2fr 3fr  1fr;
-     grid-template-rows: 2fr, 1fr;
+     /* grid-template-rows: 2fr, 1fr; */
 
      grid-template-areas:
-         " id  blurb  rating "
-         " id  progress  rating ";
+         " id  blurb  rating ";
+         /* " id  blurb  rating "; */
 
-     padding-bottom: 0;
      margin-bottom: 1em;
-     border-bottom: 2px solid GoldenRod;
-
-     /* This seems suspect... */
-     height: 35%;
+    color: #ffffff;
  }
 
 .booktitle {
     grid-area: id;
-    color: DimGrey;
-    background-color: DarkSeaGreen;
     padding: 1em;
     border-radius: 0 2em 0 0;
     overflow: hidden;
+
+    position: relative;
+    bottom: 0; left:0;
+
+    display: flex;
+ }
+
+ .booktitle .container {
+     align-self: flex-end;
  }
 
 .booktitle > h2 {
@@ -52,12 +57,15 @@
     text-align: center;
  }
 
- .progressbar {
-     grid-area: progress;
-     display: flex;
-     padding: 0.5em;
-
+ .blendable {
+     mix-blend-mode: difference;
  }
+ /* .progressbar {
+    grid-area: progress;
+    display: none;
+    padding: 0.5em;
+
+    } */
 
  .total-bar {
      background-color: LightGrey;
@@ -74,7 +82,17 @@
      background-color: GoldenRod;
      overflow: hidden;
      max-width: 100%;
-     border-radius: 30px;
+     /* border-radius: 30px; */
+ }
+
+ .outer-bar {
+     position: relative;
+
+     /* left:0;top:0; */
+
+     /* Make rounded corners, like a progress bar... */
+     /* border-radius: 5em 0 0 5em; */
+     height: 10em;
  }
 
  .pages-box {
@@ -91,16 +109,17 @@
             " id  "
             " blurb "
             " rating ";
-
     }
 
     .booktitle {
         grid-area: id;
-        color: DimGrey;
-        background-color: DarkSeaGreen;
-        padding: 1em;
-        border-radius: 0 2em 0 0;
+        /* padding: 1em; */
         overflow: hidden;
+    }
+    .booktitle > .container {
+        display: flex;
+        flex-direction: row-reverse;
+        position: relative;
     }
 
     .booktitle > h2 {
@@ -109,42 +128,39 @@
 
     .booktitle > h3 {
         font-size: 1em;
+        /* position: relative; */
+        /* bottom: 2em; left: 20px; */
     }
+
 
     .booksummary {
         grid-area: blurb;
-        padding: 1em;
+        /* padding: 1em; */
         text-align: center;
-    }
-
-    .progressbar .total-bar .completed-bar .pages-box {
-        display: none;
-    }
-    p {
-        padding: 0;
-        margin: 0;
-        max-height: 100%;
-        max-width: 100%;
     }
  }
 </style>
 
 
-<div class="book-tile-flex">
-    <div class="booktitle">
-        <h3>{book.author}</h3>
-        <h2>{book.title}</h2>
-    </div>
-    <div class="booksummary">
-        {book.summary}
-    </div>
-    <div class="progressbar">
-        <div class="total-bar"> <div class="completed-bar" style="width: {progressPercentStr}"> </div> </div>
-        {#if bookFinished}
-            <div>&#9989;</div>
-        {:else}
-            <input class="pages-box" type=number bind:value={$bookShelf[bookID].pagesRead}
-                          min=0 max={book.totalPages} />
-        {/if}
+<div class="relative-container" style="position: relative;">
+    <div class="completed-bar outer-bar" style="position: absolute; width: {progressPercentStr}"> </div>
+    <div class="book-tile-flex outer-bar">
+        <div class="booktitle blendable">
+            <div class="container">
+                <h3>{book.author}</h3>
+                <h2>{book.title}</h2>
+            </div>
+        </div>
+        <div class="booksummary blendable">
+            {book.summary}
+        </div>
+        <!-- <div class="progressbar">
+             <div class="total-bar"> <div class="completed-bar" style="width: {progressPercentStr}"> </div> </div> -->
+    {#if bookFinished}
+        <div>&#9989;</div>
+    {:else}
+        <input class="pages-box" type=number bind:value={$bookShelf[bookID].pagesRead}
+                    min=0 max={book.totalPages} />
+    {/if}
     </div>
 </div>

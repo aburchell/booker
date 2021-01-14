@@ -5,9 +5,13 @@
     import { onMount } from "svelte";
     let data;
     onMount(async () => {
-        $bookShelf = await fetch('/.netlify/functions/fetch-book'
-        ).then((x) => x.json())
+        $bookShelf = await this.fetch('/.netlify/functions/fetch-book'
+        ).then((x) => {
+            console.log(x);
+            return x.json()})
     });
+
+    console.log($bookShelf)
 
  // const server = 'undefined' === typeof window ? 'http://localhost:3000' : 'https://yearoftheword.xyz';
  // const fetch = require("node-fetch");

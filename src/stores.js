@@ -25,7 +25,7 @@ import { writable } from 'svelte/store';
 
 //     }
 // }
-export const bookShelf = writable([
+export let bookShelf = writable([
     {
 		title: "Foundation",
 		author: "Isaac Asimov",
