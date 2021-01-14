@@ -3,13 +3,11 @@
     import {bookShelf} from '../stores.js'
 
     import { onMount } from "svelte";
-    let data;
     onMount(async () => {
-        $bookShelf = await this.fetch('/.netlify/functions/fetch-book'
-        ).then((x) => {
-            console.log(x);
-            return x.json()})
-    });
+        const res = await fetch('/.netlify/functions/fetch-book');
+        const data = await res.json();
+        console.log(data)
+    })
 
     console.log($bookShelf)
 
