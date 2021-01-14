@@ -4,11 +4,11 @@
     export let i;
 
  // $: book = $bookShelf[i]["data"];
-    $: pagesRead = book[pagesRead];
+    $: pagesRead = book.pagesRead;
     $: progressPercent = Math.floor(
-        book[pagesRead] / book[totalPages] * 100);
+        book.pagesRead / book.totalPages * 100);
     $: progressPercentStr = progressPercent + '%';
-    $: bookFinished = book[pagesRead] >= book[totalPages];
+    $: bookFinished = book.pagesRead >= book.totalPages;
     $: console.log(bookFinished);
 </script>
 
@@ -161,8 +161,8 @@
     {#if bookFinished}
         <div>&#9989;</div>
     {:else}
-        <input class="pages-box" type=number bind:value={book[pagesRead]}
-                    min=0 max={book[totalPages]} />
+        <input class="pages-box" type=number bind:value={book.pagesRead}
+                    min=0 max={book.totalPages} />
     {/if}
     </div>
 </div>
