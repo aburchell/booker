@@ -1,14 +1,8 @@
 <script>
- import { isFetching, bookShelf } from '../stores.js'
+ // import { isFetching, bookShelf } from '../stores.js'
  // import BookTile from '../components/BookTile.svelte';
  import BookTray from '../components/BookTray.svelte';
 
- export async function preload(page, session) {
-    const res = await fetch('/.netlify/functions/fetch-book');
-    const data = await res.json();
-    bookShelf.set(data.data);
-    isFetching.set(false);
-}
 </script>
 
 <style>
