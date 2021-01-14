@@ -3,12 +3,12 @@
  import { bookShelf, isFetching } from '../stores.js'
  import { onMount } from 'svelte';
 
- export async function preload(page, session) {
-    const res = await fetch('/.netlify/functions/fetch-book');
-    const data = await res.json();
-    bookShelf.set(data.data);
-    isFetching.set(false);
-}
+    onMount(async () => {
+        const res = await fetch('/.netlify/functions/fetch-book');
+        const data = await res.json();
+        bookShelf.set(data.data);
+        isFetching.set(false);
+    })
 </script>
 
 <style type="text/css" media="screen">

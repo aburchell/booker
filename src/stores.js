@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 
 export const isFetching = writable(true);
-export const bookShelf = writable([]);
+export const bookShelf = writable({});
 
 // export const fetchBooks = async () => {
 //     const res = await fetch('/.netlify/functions/fetch-book');
