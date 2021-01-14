@@ -2,13 +2,21 @@ import { writable } from 'svelte/store';
 import { onMount } from 'svelte';
 
 
-export let bookShelf = writeable();
-onMount(async () => {
+export let isFetching = writable(true);
+export let bookShelf = writable();
+
+export const fetchBooks = async () => {
     const res = await fetch('/.netlify/functions/fetch-book');
     const data = await res.json();
-    console.log(data)
-    $bookShelf = data.data;
-})
+    bookShelf.set(data.data);
+    isFetching.set(false);
+}
+// onMount(async () => {
+//     const res = await fetch('/.netlify/functions/fetch-book');
+//     const data = await res.json();
+//     console.log(data)
+//     $bookShelf = data.data;
+// })
 
 // function createBookShelf() {
 //     const { subscribe, set, update } = writable([
